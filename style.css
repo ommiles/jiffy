@@ -1,0 +1,214 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Helvetice Neue', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.5;
+    /* padding linked to screen size */
+    padding: 5vh 3vw;
+    /* body tag by default is only as tall as its content */
+    /* 100vh expandss the element to the full page  */
+    min-height: 100vh;
+    /* flexbox to stack boxes side by side in a long row */
+    display: flex;
+    /* stack boxes on top of each other */
+    flex-direction: column;
+    /* each div container spaced evenly, first item on the start line, last item on the end line */
+    justify-content: space-between;
+  }
+  
+  .title {
+    text-align: center;
+  }
+  
+  .middle {
+      /* bookmarking this as a default for potentially styling other items inside of these elements using an absolute position */
+      position: relative;
+  }
+  
+  .videos,
+  .top,
+  .indicators {
+      display: grid;
+    place-items: center;
+  }
+  
+  .videos {
+      /* responsive design */
+      width: 100%;
+    padding-left:  24px;
+    padding-right: 24px;
+  }
+  
+  /* use the input selector to style */
+  input {
+    /* this styling makes the input element look like its part of the page */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    outline: none;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .visible {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  
+  .visible:nth-of-type(2n) {
+    transform: scale(1) rotate(5deg);
+  }
+  
+  .visible:nth-of-type(3n) {
+    transform: scale(1) rotate(-5deg);
+  }
+  
+  .visible:nth-of-type(4n) {
+    transform: scale(1) rotate(7deg);
+  }
+  
+  .search-input {
+    width: 100%;
+    text-align: center;
+    font-size: 72px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      /* we subtract the element's padding from 100 and this gives us a total of 94vw */
+    width: 94vw;
+    line-height: 1;
+    height: 88px;
+  }
+  
+  .search-clear {
+    cursor: pointer;
+  }
+  
+  input {
+    padding: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    outline: none;
+  }
+  
+  /* styles placeholder text of placeholder*/
+  .search-input::placeholder {
+    color: #323232;
+  }
+  
+  .title,
+  .search-clear {
+      grid-area: 1 / 1;
+  }
+  
+  /* hide svg's (x button and spinner) and display only when utilising search */
+  .search-clear,
+  .spinner {
+    /* change opacity to fade-in once search is utilised */
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    /* this stops mouse interactivity */
+    /* pointer-events: none; */
+  }
+  
+  .search-clear {
+    /* pointer hand will appear */
+    cursor: pointer;
+    position: relative;
+    /* to uze z index, need to have a position property of absolute, relative, or fixed*/
+    z-index: 2;
+  }
+  
+  .title {
+    position: relative;
+    /* so that our close button is on top of our title */
+    z-index: 1;
+      transition: opacity 0.5s ease;
+  }
+  
+  .videos,
+  .middle,
+  .grid {
+    display: grid;
+    place-items: center;
+  }
+  
+  .video {  
+    /* tweet from benjamin de cock */
+    /* the below grid area tells each child to take up full width and height of our grid */
+    grid-area: 1 / 1;
+    background-color: #000;
+    display: block;
+    /* square shaped gifs / mp4s */
+    max-width: 480px;
+    max-height: 480px;
+    box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.68);
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    outline: 1px solid transparent;
+    /* responsive design */
+      width: 100%;
+  }
+  
+  .search-input,
+  .videos,
+  .full-area {
+    grid-area: 1/1;
+  }
+  
+  .top {
+    display: grid;
+    grid-area: 1/1;
+  }
+  
+  .indicators,
+  .top {
+    text-align: center;
+    position: relative;
+  }
+  
+  /* we are creating the search hint transition that we've started in our js */
+  .search-hint,
+  .spinner {
+      grid-area: 1/1;
+  }
+  
+  .spinner,
+  .search-hint,
+  .search-clear {
+    opacity: 0;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all .2s ease;
+  }
+  
+  .loading .spinner,
+  .show-hint .search-hint,
+  .has-results .search-clear {
+      opacity: 1;
+  }
+  
+  .show-hint.loading .search-hint,
+  .has-results .title {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .spinner {
+    max-width: 24px;
+  }
+  
+  
+  @media (max-width: 480px) {
+    body {
+      font-size: 18px;
+    }
+    
+    .search-input {
+      font-size: 32px;
+    }
+  }
